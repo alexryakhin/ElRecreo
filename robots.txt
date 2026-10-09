@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alexriakhin.com/ElRecreo/sitemap.xml

@@ -67,6 +67,7 @@
       </a>
       <nav class="bar-nav" aria-label="Main">
         <a href="#how">How it works</a>
+        <a href="#cast">The story</a>
         <a href="#rioplatense">Why Rioplatense</a>
         <a href="#path">Levels</a>
         <a href="#privacy">Privacy</a>
@@ -93,8 +94,9 @@
               <img src="assets/img/app-store-badge.svg" alt="Download on the App Store" width="160" height="53">
             </a>
             -->
-            <a class="btn btn-quiet" href="#how">See how it works</a>
+            <a class="btn btn-quiet" href="#cast">Meet the neighbors</a>
           </div>
+          <p class="hear-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg>Sound on: tap the speech bubbles to hear Buenos Aires.</p>
         </div>
         <div class="hero-art">
           <div class="paper paper-a" aria-hidden="true"></div>
@@ -102,8 +104,16 @@
           <figure class="hero-photo">
             <img src="assets/img/hero-obelisco.jpg" width="767" height="1024" alt="Aerial view of the Obelisco on Avenida 9 de Julio in Buenos Aires on a sunny day" fetchpriority="high">
           </figure>
-          <p class="bubble bubble-sun" lang="es">Che, ¿todo bien?</p>
-          <p class="bubble bubble-white"><span lang="es">¿Vos de dónde sos?</span></p>
+          <button type="button" class="bubble bubble-sun say" data-audio="lucho-donde" aria-label="Play Lucho saying “Che, ¿y vos de dónde sos?” (Hey, and where are you from?)">
+            <img src="assets/img/cast/lucho.png" alt="" width="36" height="36" class="bubble-face face-plum">
+            <span lang="es">Che, ¿y vos de dónde sos?</span>
+            <svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg>
+          </button>
+          <button type="button" class="bubble bubble-white say" data-audio="ruben-andas" aria-label="Play Rubén saying “¿Qué tal? ¿Cómo andás?” (How’s it going?)">
+            <img src="assets/img/cast/ruben.png" alt="" width="36" height="36" class="bubble-face face-teal">
+            <span lang="es">¿Qué tal? ¿Cómo andás?</span>
+            <svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg>
+          </button>
         </div>
       </div>
     </section>
@@ -118,23 +128,24 @@
         </div>
 
         <div class="how-grid">
-          <article class="card how-lesson reveal">
-            <p class="chip chip-mate">Lesson · 15 min</p>
-            <p class="mock-prompt">Build the sentence</p>
+          <article class="card how-lesson reveal" data-build aria-labelledby="try-title">
+            <p class="chip chip-mate">Try it · a real step</p>
+            <p class="mock-prompt" id="try-title">Finish the sentence</p>
             <p class="mock-target">“Where are you from?”</p>
-            <div class="mock-answer" aria-hidden="true">
+            <div class="mock-answer">
               <span class="word word-set" lang="es">¿Vos</span>
               <span class="word word-set" lang="es">de</span>
               <span class="word word-set" lang="es">dónde</span>
-              <span class="word word-slot"></span>
+              <span class="word word-slot" data-slot aria-hidden="true"></span>
             </div>
-            <div class="mock-bank" aria-hidden="true">
-              <span class="word" lang="es">eres?</span>
-              <span class="word word-pick" lang="es">sos?</span>
-              <span class="word" lang="es">estás?</span>
+            <div class="mock-bank" role="group" aria-label="Pick the last word">
+              <button type="button" class="word" lang="es" data-pick="wrong" data-why="“Eres” goes with tú. In Buenos Aires you say vos — and vos goes with sos.">eres?</button>
+              <button type="button" class="word" lang="es" data-pick="right">sos?</button>
+              <button type="button" class="word" lang="es" data-pick="wrong" data-why="“Estás” is for how you are right now, not where you’re from. Try again!">estás?</button>
             </div>
-            <div class="meter" role="img" aria-label="Lesson progress, about two thirds done"><span style="width: 64%"></span></div>
-            <p class="mock-note">Illustration of a sentence-building step. In Buenos Aires it’s <span lang="es">“vos sos”</span>, not <span lang="es">“tú eres”</span>.</p>
+            <div class="meter" role="img" aria-label="Lesson progress"><span data-meter style="width: 64%"></span></div>
+            <p class="mock-note" data-feedback aria-live="polite">Tap the word that finishes the question. In Buenos Aires it’s <span lang="es">“vos sos”</span>, not <span lang="es">“tú eres”</span>.</p>
+            <button type="button" class="btn btn-quiet btn-small" data-again hidden>Try it again</button>
           </article>
 
           <ul class="steps" aria-label="What you do in a lesson">
@@ -152,7 +163,7 @@
             </li>
             <li class="step reveal">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13" width="4.5" height="7" rx="2"/><rect x="16.5" y="13" width="4.5" height="7" rx="2"/></svg>
-              <div><h3>Listen</h3><p>Train your ear on the rhythm and the “sh” sound of the Río de la Plata.</p></div>
+              <div><h3>Listen</h3><p>Every line is voiced in Rioplatense Spanish, so your ear learns the rhythm and the “sh” of the Río de la Plata.</p></div>
             </li>
             <li class="step reveal">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h10a2 2 0 0 1 2 2V12a2 2 0 0 1-2 2H9l-3.5 3v-3H4a2 2 0 0 1-2-2V7.5a2 2 0 0 1 2-2z"/><path d="M18.5 9.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-.5v2.5L16.5 17H13"/></svg>
@@ -167,8 +178,107 @@
       </div>
     </section>
 
+    <!-- The story -->
+    <section class="band" id="cast" aria-labelledby="cast-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">The story</p>
+          <h2 id="cast-title">You just moved into a building in Palermo. Meet the neighbors.</h2>
+          <p>A1 follows your first weeks in Buenos Aires across 60 lessons. Lucho finds your keys on the stairs, Marta adopts you with an alfajor at her kiosco, Rubén keeps track of you in his famous cuaderno, and before long you’re hosting an asado on the terraza. Every new word comes with someone to say it to. Tap a neighbor to hear them.</p>
+        </div>
+
+        <ul class="cast" aria-label="The neighbors">
+          <li class="reveal"><button type="button" class="cast-card say" data-audio="sofi-hola" style="--face: var(--tint-orange)">
+            <img src="assets/img/cast/sofi.png" alt="" width="96" height="96" loading="lazy">
+            <span class="cast-name">Sofi</span><span class="cast-role">Your neighbor in 4B, an illustrator</span>
+            <span class="cast-line" lang="es">“¡Hola! Soy Sofi, del 4B. ¿Cómo te llamás?”</span>
+            <span class="cast-en">Hi! I’m Sofi, from 4B. What’s your name?</span>
+            <span class="cast-play"><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg><span>Listen</span></span>
+          </button></li>
+          <li class="reveal"><button type="button" class="cast-card say" data-audio="ruben-hola" style="--face: var(--tint-teal)">
+            <img src="assets/img/cast/ruben.png" alt="" width="96" height="96" loading="lazy">
+            <span class="cast-name">Rubén</span><span class="cast-role">The building’s encargado</span>
+            <span class="cast-line" lang="es">“¡Buenas tardes! Soy Rubén, el encargado. ¿Cómo te llamás?”</span>
+            <span class="cast-en">Good afternoon! I’m Rubén, the building manager. What’s your name?</span>
+            <span class="cast-play"><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg><span>Listen</span></span>
+          </button></li>
+          <li class="reveal"><button type="button" class="cast-card say" data-audio="marta-familia" style="--face: var(--tint-sun)">
+            <img src="assets/img/cast/marta.png" alt="" width="96" height="96" loading="lazy">
+            <span class="cast-name">Marta</span><span class="cast-role">Runs the kiosco on the corner</span>
+            <span class="cast-line" lang="es">“Tomá, es de dulce de leche. ¡Ya sos de la familia!”</span>
+            <span class="cast-en">Here, it’s dulce de leche. You’re family now!</span>
+            <span class="cast-play"><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg><span>Listen</span></span>
+          </button></li>
+          <li class="reveal"><button type="button" class="cast-card say" data-audio="lucho-cancha" style="--face: var(--tint-plum)">
+            <img src="assets/img/cast/lucho.png" alt="" width="96" height="96" loading="lazy">
+            <span class="cast-name">Lucho</span><span class="cast-role">Sofi’s friend, lives for fútbol</span>
+            <span class="cast-line" lang="es">“¡Genial! En la cancha aprendés todo… ¡las malas palabras también!”</span>
+            <span class="cast-en">Great! On the pitch you learn everything… swear words too!</span>
+            <span class="cast-play"><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg><span>Listen</span></span>
+          </button></li>
+          <li class="reveal"><button type="button" class="cast-card say" data-audio="caro-laburo" style="--face: var(--tint-sun)">
+            <img src="assets/img/cast/caro.png" alt="" width="96" height="96" loading="lazy">
+            <span class="cast-name">Caro</span><span class="cast-role">Sofi’s friend from art school</span>
+            <span class="cast-line" lang="es">“¡Primer día de laburo! ¿Querés un café?”</span>
+            <span class="cast-en">First day of work! Want a coffee?</span>
+            <span class="cast-play"><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg><span>Listen</span></span>
+          </button></li>
+        </ul>
+
+        <div class="story-grid">
+          <article class="card scene reveal" data-scene aria-labelledby="scene-title">
+            <div class="scene-head">
+              <div>
+                <p class="chip chip-teal">Unit 8 · Daily routines</p>
+                <h3 id="scene-title">Sofi vs. Rubén</h3>
+                <p class="scene-sub">It’s four in the afternoon. Rubén has been up since five. Sofi is just having breakfast.</p>
+              </div>
+              <button type="button" class="btn btn-primary scene-play" data-scene-play>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg><span>Play the scene</span>
+              </button>
+            </div>
+            <ol class="chat" aria-live="polite">
+              <li class="msg msg-left" data-line="scene-1"><img src="assets/img/cast/ruben.png" alt="Rubén" width="40" height="40" class="face-teal"><div><p lang="es">Sofi, son las cuatro de la tarde. ¿Te levantás ahora?</p><small>Sofi, it’s four in the afternoon. Are you only getting up now?</small></div></li>
+              <li class="msg msg-right" data-line="scene-2"><img src="assets/img/cast/sofi.png" alt="Sofi" width="40" height="40" class="face-orange"><div><p lang="es">¡No, Rubén! Me levanto a la una. Desayuno, me ducho… ¡y ahora, la merienda!</p><small>No, Rubén! I get up at one. I have breakfast, I shower… and now, merienda!</small></div></li>
+              <li class="msg msg-left" data-line="scene-3"><img src="assets/img/cast/ruben.png" alt="Rubén" width="40" height="40" class="face-teal"><div><p lang="es">¡A la una! Yo me levanto a las cinco y barro la vereda todos los días.</p><small>At one! I get up at five and sweep the sidewalk every day.</small></div></li>
+              <li class="msg msg-right" data-line="scene-4"><img src="assets/img/cast/sofi.png" alt="Sofi" width="40" height="40" class="face-orange"><div><p lang="es">Y yo dibujo hasta las tres de la mañana. ¡Laburo a la noche!</p><small>And I draw until three in the morning. I work at night!</small></div></li>
+              <li class="msg msg-left" data-line="scene-5"><span class="face-initial face-sun" role="img" aria-label="Mili">M</span><div><p lang="es">¿Y quién tiene razón?</p><small>Mili, Rubén’s granddaughter: So who’s right?</small></div></li>
+            </ol>
+            <div class="vote" data-vote hidden>
+              <p>Your turn. Who’s right?</p>
+              <div class="vote-buttons">
+                <button type="button" class="btn btn-quiet" data-choice="sofi">Sofi, the night owl</button>
+                <button type="button" class="btn btn-quiet" data-choice="ruben">Rubén, the early bird</button>
+              </div>
+            </div>
+            <p class="msg msg-right msg-reply" data-reply="scene-sofi" hidden><img src="assets/img/cast/sofi.png" alt="Sofi" width="40" height="40" class="face-orange"><span><span lang="es" class="reply-es">¡Muy bien! ¡Ya sos de acá!</span><small>Very good! You’re a local now!</small></span></p>
+            <p class="msg msg-right msg-reply" data-reply="scene-ruben" hidden><img src="assets/img/cast/sofi.png" alt="Sofi" width="40" height="40" class="face-orange"><span><span lang="es" class="reply-es">¡Ay, sos igual que Rubén!</span><small>Oh, you’re just like Rubén!</small></span></p>
+          </article>
+
+          <aside class="card keep-touch reveal" aria-labelledby="touch-title">
+            <h3 id="touch-title">And they text you.</h3>
+            <p>Reminders arrive as messages from the neighbors: Spanish first, English underneath. Practice today, and Marta might save you an alfajor.</p>
+            <ul class="notes" aria-label="Example reminders">
+              <li class="note">
+                <span class="note-face"><img src="assets/img/cast/marta.png" alt="" width="44" height="44" class="face-sun"><img src="assets/img/app-icon.png" alt="" width="18" height="18" class="note-app"></span>
+                <span class="note-body"><span class="note-top"><b>Marta</b><small>now</small></span><span lang="es">¡Corazón! Te guardé un alfajor y una lección.</span><span class="note-en">Sweetheart! I saved you an alfajor and a lesson.</span></span>
+              </li>
+              <li class="note">
+                <span class="note-face"><img src="assets/img/cast/lucho.png" alt="" width="44" height="44" class="face-plum"><img src="assets/img/app-icon.png" alt="" width="18" height="18" class="note-app"></span>
+                <span class="note-body"><span class="note-top"><b>Lucho</b><small>9:41</small></span><span lang="es">Che, ¿entrenamos? Español, no fútbol. Bueno, primero español.</span><span class="note-en">Hey, training? Spanish, not fútbol. Okay, Spanish first.</span></span>
+              </li>
+              <li class="note">
+                <span class="note-face"><img src="assets/img/cast/ruben.png" alt="" width="44" height="44" class="face-teal"><img src="assets/img/app-icon.png" alt="" width="18" height="18" class="note-app"></span>
+                <span class="note-body"><span class="note-top"><b>Rubén</b><small>yesterday</small></span><span lang="es">Ya barrí la vereda. Ahora te toca a vos: una lección.</span><span class="note-en">Sidewalk’s swept. Your turn now: one lesson.</span></span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <!-- Why Rioplatense -->
-    <section class="band" id="rioplatense" aria-labelledby="rio-title">
+    <section class="band band-low" id="rioplatense" aria-labelledby="rio-title">
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">Why Rioplatense</p>
@@ -181,27 +291,29 @@
             <h3><span lang="es">Vos</span>, not <span lang="es">tú</span></h3>
             <p>Porteños use <span lang="es">vos</span> with its own verb forms. You’ll learn them as the default.</p>
             <dl class="compare">
-              <div><dt>Textbook</dt><dd lang="es">¿Tú tienes tiempo?</dd></div>
-              <div><dt>Buenos Aires</dt><dd lang="es">¿Vos <mark>tenés</mark> tiempo?</dd></div>
+              <div><dt>Textbook</dt><dd lang="es">Y tú, ¿tienes hermanos?</dd></div>
+              <div class="compare-play"><dt>Buenos Aires</dt><dd lang="es">Y vos, ¿<mark>tenés</mark> hermanos?</dd>
+                <button type="button" class="play-dot say" data-audio="lucho-hermanos" aria-label="Play Lucho: Y vos, ¿tenés hermanos? (And you, do you have brothers and sisters?)"><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></div>
             </dl>
           </article>
           <article class="card rio reveal">
             <h3>The “sh” sound</h3>
             <p>In Buenos Aires, <i lang="es">ll</i> and <i lang="es">y</i> sound like the English “sh”. Linguists call it <i>yeísmo rehilado</i>.</p>
             <dl class="compare">
-              <div><dt>Written</dt><dd lang="es">Yo me llamo…</dd></div>
-              <div><dt>Heard</dt><dd><mark>sho</mark> me <mark>sha</mark>mo…</dd></div>
+              <div><dt>Written</dt><dd lang="es">¿Cómo te llamás?</dd></div>
+              <div class="compare-play"><dt>Heard</dt><dd>¿cómo te <mark>sha</mark>más?</dd>
+                <button type="button" class="play-dot say" data-audio="sofi-llamas" aria-label="Play Sofi: ¡Hola! ¿Cómo te llamás? (Hi! What’s your name?)"><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></div>
             </dl>
           </article>
           <article class="card rio reveal">
             <h3>Words you’ll actually hear</h3>
             <p>Everyday expressions and a pinch of <i lang="es">lunfardo</i>, the city’s slang, with notes on when to use them.</p>
-            <ul class="tags" aria-label="Examples">
-              <li><span lang="es">che</span> <small>hey</small></li>
-              <li><span lang="es">laburo</span> <small>job</small></li>
-              <li><span lang="es">bondi</span> <small>bus</small></li>
-              <li><span lang="es">re</span> <small>really</small></li>
-              <li><span lang="es">dale</span> <small>okay, sure</small></li>
+            <ul class="tags" aria-label="Examples, tap to hear">
+              <li><button type="button" class="say" data-audio="word-che"><span lang="es">che</span> <small>hey</small><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></li>
+              <li><button type="button" class="say" data-audio="word-laburo"><span lang="es">laburo</span> <small>job</small><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></li>
+              <li><button type="button" class="say" data-audio="word-bondi"><span lang="es">bondi</span> <small>bus</small><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></li>
+              <li><button type="button" class="say" data-audio="word-re"><span lang="es">re</span> <small>really</small><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></li>
+              <li><button type="button" class="say" data-audio="word-dale"><span lang="es">dale</span> <small>okay, sure</small><svg class="say-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="wave wave-1" d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path class="wave wave-2" d="M18.3 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></li>
             </ul>
           </article>
         </div>
@@ -218,20 +330,34 @@
             <li><figure><img src="assets/img/taxi.jpg" alt="A black-and-yellow Buenos Aires taxi on a city avenue" width="512" height="512" loading="lazy"><figcaption>taxi</figcaption></figure></li>
           </ul>
         </div>
+
+        <div class="soundtrack reveal">
+          <div class="soundtrack-copy">
+            <p class="eyebrow">Banda sonora</p>
+            <h3>Every unit ends with a song.</h3>
+            <p>Finish a unit and unlock a track from the Río de la Plata, picked for lyrics you can follow at that level. Then listen on Apple Music or Spotify.</p>
+          </div>
+          <ol class="records" aria-label="Songs from the A1 soundtrack">
+            <li><span class="vinyl vinyl-teal" aria-hidden="true"></span><span><b lang="es">Chau</b><small>No Te Va Gustar · Unit 1</small></span></li>
+            <li><span class="vinyl vinyl-sun" aria-hidden="true"></span><span><b lang="es">Ya no sé qué hacer conmigo</b><small>El Cuarteto de Nos · Unit 2</small></span></li>
+            <li><span class="vinyl vinyl-orange" aria-hidden="true"></span><span><b lang="es">En la ciudad de la furia</b><small>Soda Stereo · Unit 3</small></span></li>
+            <li><span class="vinyl vinyl-plum" aria-hidden="true"></span><span><b lang="es">Todo se transforma</b><small>Jorge Drexler · Unit 9</small></span></li>
+          </ol>
+        </div>
       </div>
     </section>
 
     <!-- Path A1 → C1 -->
-    <section class="band band-low" id="path" aria-labelledby="path-title">
+    <section class="band" id="path" aria-labelledby="path-title">
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">Your path</p>
           <h2 id="path-title">From your first <span lang="es">“hola”</span> to holding your own. A1 to C1.</h2>
-          <p>Five levels, following the CEFR scale used by language schools and exams. Each one builds on the last, so you always know what comes next.</p>
+          <p>Five levels, following the CEFR scale used by language schools and exams. A1 is complete: 10 units, 60 lessons, every line voiced. The next levels follow.</p>
         </div>
         <div class="flow" aria-hidden="true"><span></span></div>
         <ol class="levels">
-          <li class="level reveal"><span class="lv">A1</span><h3>Survival</h3><p>Greetings, numbers, shopping, getting around — your first days in the city.</p></li>
+          <li class="level level-ready reveal"><span class="lv">A1</span><h3>Survival <span class="ready">Ready at launch</span></h3><p>Greetings, numbers, shopping, getting around — your first days in the city.</p></li>
           <li class="level reveal"><span class="lv">A2</span><h3>Routine</h3><p>Daily life and small talk: what you did, what you like, what you need.</p></li>
           <li class="level reveal"><span class="lv">B1</span><h3>Independence</h3><p>Live on your own terms: sort out problems, tell stories, keep a conversation going.</p></li>
           <li class="level reveal"><span class="lv">B2</span><h3>Fluency</h3><p>Work, opinions and nuance — and the social codes behind them.</p></li>
@@ -277,7 +403,7 @@
       <div class="wrap closing-inner reveal">
         <img src="assets/img/app-icon.png" alt="" width="96" height="96" loading="lazy">
         <h2 id="closing-title"><span lang="es">Nos vemos</span> soon.</h2>
-        <p>El Recreo is on its way to iPhone, iPad and Mac. Questions, ideas or want to hear when it launches? Write to us.</p>
+        <p>El Recreo is on its way to iPhone, iPad and Mac, with the app in English, <span lang="ru">Русский</span>, <span lang="pt-BR">Português</span>, <span lang="fr">Français</span> and <span lang="de">Deutsch</span>. Questions, ideas or want to hear when it launches? Write to us.</p>
         <p class="closing-actions">
           <a class="btn btn-primary" href="mailto:support@alexriakhin.com?subject=El%20Recreo%20launch">support@alexriakhin.com</a>
         </p>

@@ -12,15 +12,18 @@ No build step, no framework, no npm, no analytics and no cookies: edit the HTML 
 
 | Path | What |
 |---|---|
-| `index.html` | Landing page: hero, how it works, why Rioplatense, A1–C1 path, privacy promises |
+| `index.html` | Landing page: hero (playable speech bubbles), a try-it step, the story and cast with voice samples, the Sofi vs. Rubén scene, why Rioplatense, banda sonora, A1–C1 path, privacy promises |
 | `support.html` | FAQ and contact (`<details>` accordions, no JavaScript) |
 | `privacy.html`, `terms.html` | Legal pages — keep these paths stable, the App Store listing will link to them |
 | `404.html` | Not-found page; self-contained (inline CSS, inline icon, absolute links) because GitHub Pages serves it at any depth |
 | `assets/css/site.css` | All styles. Tokens from the app's design system ("The Social Estancia"): paper surfaces, teal `#006666`, orange `#8E4900`, sun yellow `#FFD608`; Plus Jakarta Sans + Be Vietnam Pro from Google Fonts; light and dark (`prefers-color-scheme`) |
-| `assets/js/site.js` | Header shadow on scroll, reveal-on-scroll (off with reduced motion), footer year. The site works without it |
-| `assets/img/` | Hero photo, culture photos, app icon, wordmarks, `og.jpg` share image (1200×630) |
+| `assets/js/site.js` | Header shadow on scroll, reveal-on-scroll (off with reduced motion), footer year, and the voice samples (one line at a time), the try-it step and the scene. The page reads fine without it |
+| `assets/img/` | Hero photo, culture photos, app icon, wordmarks, `og.jpg` share image (1200×630), `cast/` portraits |
+| `assets/audio/` | Voice samples copied from the app's recorded lines, plus the right/wrong sounds |
 | `favicons/` | `favicon.ico`, PNG favicons, `apple-touch-icon.png`, Android icons, `site.webmanifest` |
-| `tools/make_assets.py` | Rebuilds `assets/img/` and `favicons/` from the app's artwork (needs Pillow) |
+| `tools/sync_from_app.py` | Icon, favicons, share image, cast portraits and voice samples, straight from the app repo |
+| `tools/render_icon.swift` | Flat render of the app's `AppIcon.icon` layers (used by `sync_from_app.py`) |
+| `tools/make_assets.py` | Photos and wordmarks from the app's artwork (needs Pillow) |
 | `robots.txt`, `sitemap.xml` | For search engines |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are |
 
@@ -36,7 +39,7 @@ python3 -m http.server 8765        # then open http://localhost:8765
 ## Images
 
 `tools/make_assets.py` takes a folder with the original artwork, named as in the app's asset catalog
-(`icon.png` from `AppIcon.icon/Assets`, `@3x` images from `Assets.xcassets/Images/<name>.imageset`
+(`@3x` images from `Assets.xcassets/Images/<name>.imageset`
 renamed to `<name>.jpg`, `light-logo.svg`/`dark-logo.svg` from `LaunchScreenLogo.imageset`, and
 `hero.jpg`, the Obelisco photo from the retired Astro site's `public/images/hero-buenos-aires.jpg`):
 
@@ -44,8 +47,21 @@ renamed to `<name>.jpg`, `light-logo.svg`/`dark-logo.svg` from `LaunchScreenLogo
 python3 tools/make_assets.py ~/path/to/artwork
 ```
 
-It writes compressed JPEGs, the icon on its teal background, all favicons and the share image.
-Keep the whole site small (it's well under 2 MB today).
+It writes the compressed photos and copies the wordmarks.
+
+## Icon, cast and voices
+
+Everything that mirrors the app comes from `tools/sync_from_app.py`, run from the app repo (this site is
+its `ElRecreoWebsite` submodule). It renders the icon from `ElRecreo/Resources/AppIcon.icon`, rebuilds the
+favicons and `og.jpg`, copies the cast portraits, and copies the voice samples listed in `LINES` from
+`Audio/Clips` (looked up by speaker and exact text in `Audio/manifest.json`):
+
+```bash
+python3 ElRecreoWebsite/tools/sync_from_app.py
+```
+
+To change a sample, edit `LINES` and the matching text in `index.html`, then run it again.
+Keep the whole site small (about 2.5 MB with the voices).
 
 ## Deploy (GitHub Pages)
 

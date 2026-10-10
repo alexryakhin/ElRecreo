@@ -582,8 +582,13 @@ i[lang], em { font-style: italic; }
 }
 .soundtrack h3 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; }
 .soundtrack-copy > p:not(.eyebrow) { margin-top: 1rem; color: var(--on-surface-variant); }
-.records { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.85rem; }
-.records li { display: flex; align-items: center; gap: 0.85rem; background: var(--surface-low); border-radius: 1.2rem; padding: 0.75rem; }
+.records { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.records li { display: flex; align-items: center; gap: 0.85rem; background: var(--surface-low); border-radius: 1.2rem; padding: 0.6rem 0.6rem 0.6rem 0.75rem; }
+.record-text { flex: 1; min-width: 0; }
+.listen { flex: none; display: flex; gap: 0.15rem; }
+.listen a { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; transition: background-color 0.2s ease; }
+.listen a:hover { background: var(--surface-high); }
+.listen img { width: 20px; height: 20px; }
 .records b { display: block; font: 700 1rem/1.25 var(--font-head); }
 .records small { display: block; margin-top: 0.2rem; color: var(--on-surface-variant); font-size: 0.85rem; }
 .vinyl {
@@ -626,7 +631,6 @@ i[lang], em { font-style: italic; }
   }
   .cast::-webkit-scrollbar { display: none; }
   .cast li { flex: 0 0 80%; scroll-snap-align: start; }
-  .records { grid-template-columns: 1fr; }
   .note:nth-child(2) { transform: none; }
   .bubble { padding: 0.4rem 0.75rem 0.4rem 0.4rem; }
   .bubble-face { width: 30px; height: 30px; }

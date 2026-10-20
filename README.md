@@ -1,8 +1,8 @@
 # El Recreo — website
 
 Marketing site for El Recreo, the app for learning Rioplatense (Buenos Aires) Spanish in 15-minute
-lessons on iPhone, iPad and Mac. The app isn't released yet: the site announces it ("Coming soon")
-and nothing is sold here. Static HTML served by GitHub Pages, planned at
+lessons on iPhone, iPad and Mac. The iOS app is on the App Store (id6761676545); the Mac version is announced as "coming soon".
+Nothing is sold here. Static HTML served by GitHub Pages, planned at
 https://alexriakhin.com/ElRecreo/. This repository is the `ElRecreoWebsite` submodule of the app
 repository.
 
@@ -95,14 +95,12 @@ git commit -m "Add website submodule"
 Afterwards: commit and push here first, then commit the updated submodule pointer in the app repo
 (`git add ElRecreoWebsite && git commit`).
 
-## When the app launches
+## When the Mac app launches
 
-- In `index.html`, replace the "Coming soon" badge in the hero with the App Store badge — the
-  commented `APP STORE LINK` block marks the spot — and update the "Coming soon" pill in each page's
-  header and the closing section.
-- Add `"downloadUrl"` and `"offers"` to the JSON-LD in `index.html`, and an
-  `<meta name="apple-itunes-app" content="app-id=…">` tag.
-- Update the launch and pricing answers in `support.html`.
+- Change the "Mac coming soon" wording (meta descriptions, closing section and each page's footer line) and add
+  `macOS` back to `operatingSystem` in the JSON-LD in `index.html`.
+- The App Store links (`https://apps.apple.com/app/id6761676545`) already cover every platform.
+
 
 ## Languages
 

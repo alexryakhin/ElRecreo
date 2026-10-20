@@ -157,6 +157,7 @@ i[lang], em { font-style: italic; }
   color: var(--on-sun); background: var(--sun);
   padding: 0.6rem 1rem; border-radius: var(--r-pebble);
 }
+.bar-soon { text-decoration: none; }
 .page .bar-soon, .bar-nav + .bar-soon { margin-left: 0; }
 
 @media (max-width: 52rem) {

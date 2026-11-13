@@ -57,7 +57,7 @@
   <main id="main">
     <div class="wrap page-head">
       <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: November 13, 2026 (the Android app; voices that download with a level)</p>
+      <p class="meta">Last updated: November 13, 2026 (using your levels on another device)</p>
     </div>
     <div class="wrap prose-wrap">
       <article class="prose">
@@ -69,6 +69,7 @@
             <li>Your learning progress lives on your devices. On iPhone, iPad and Mac it syncs through your own iCloud account; on Android it can be included in your device’s own backup. We can’t see it.</li>
             <li>The microphone is used only for speaking exercises, and only if you allow it.</li>
             <li>Reminders are created on your device. Nothing about them is sent to us.</li>
+            <li>To use levels you bought on your other devices, iPhone or Android, the app keeps a record of the purchases under a random ID, with RevenueCat and on our own small server. No name, email or store account is part of it. <a href="#other-devices">How it works</a>.</li>
           </ul>
         </div>
 
@@ -76,7 +77,7 @@
         <p>El Recreo is an app for learning Rioplatense Spanish on iPhone, iPad, Mac and Android, made by an independent developer, Aleksandr Riakhin (“we”, “us”). This policy covers the El Recreo app and this website. If you have a question about it, write to <a href="mailto:support@alexriakhin.com">support@alexriakhin.com</a>.</p>
 
         <h2>What we don’t collect</h2>
-        <p>El Recreo is built so that we don’t need your personal data. The app has no account system and no sign-up. It contains no advertising, no third-party analytics and no tracking SDKs, and it does not track you across other companies’ apps or websites. The app has no servers of its own and talks to no third-party service. On iPhone, iPad and Mac, purchases go through the App Store and progress sync goes through your own iCloud account, both run by Apple. On Android, purchases go through Google Play, run by Google. We don’t sell or share personal data.</p>
+        <p>El Recreo is built so that we don’t need your personal data. The app has no account system and no sign-up. It contains no advertising, no third-party analytics and no tracking SDKs, and it does not track you across other companies’ apps or websites. On iPhone, iPad and Mac, purchases go through the App Store and progress sync goes through your own iCloud account, both run by Apple. On Android, purchases go through Google Play, run by Google. The only other services the app talks to are the ones that let you use your levels on another device: RevenueCat and our own small link server, described <a href="#other-devices">below</a>. We don’t sell personal data or share it for advertising.</p>
 
         <h2>Your learning progress</h2>
         <p>Lessons you’ve completed, your answers, your settings and similar progress data are stored on your device. If you’re signed in to iCloud, this data is synced between your devices through Apple’s iCloud (CloudKit), in the private database of <em>your</em> iCloud account. Data in that private database is accessible to you, not to us; Apple handles it under the <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>.</p>
@@ -104,13 +105,19 @@
 
         <h2 id="purchases">Purchases</h2>
         <p>Parts of the course are sold as one-time in-app purchases. Payment is handled entirely by Apple through the App Store on iPhone, iPad and Mac, and by Google through Google Play on Android; we never receive your payment details, your Apple ID or your Google account.</p>
-        <p>To check which levels you own and to restore them on your other devices, the app asks the store directly: the App Store through Apple’s StoreKit, or Google Play through Google Play Billing. Apple and Google keep the purchase records; we don’t receive them and have no server that holds them. All we see is the aggregate sales information shown in App Store Connect and Google Play Console, which doesn’t identify you.</p>
+        <p>To check which levels you own and to restore them on your other devices with the same store, the app asks the store directly: the App Store through Apple’s StoreKit, or Google Play through Google Play Billing. Apple and Google keep the purchase records. We also see the aggregate sales information shown in App Store Connect and Google Play Console, which doesn’t identify you.</p>
+
+        <h2 id="other-devices">Using your levels on another device</h2>
+        <p>A level you buy can also be used on your other devices, on either store: for example, buy on an iPhone and use it on an Android tablet. Up to five devices share one set of levels (a “group”). There is still no account: devices join a group with a one-time code that one of them shows. Your learning progress is never part of this; each device keeps its own.</p>
+        <p><strong>RevenueCat.</strong> To know which levels a group owns on both stores, the app uses <a href="https://www.revenuecat.com/">RevenueCat</a>, a company that processes in-app purchase records on our behalf. When the app starts it connects to RevenueCat with a random ID the app made (it looks like <code>er_3f9a…</code>). On iPhone, iPad and Mac that ID is shared by your Apple devices through iCloud key-value storage in your iCloud account; on Android, the app derives it from a scrambled (hashed) form of your first purchase’s record, so your Android devices on one Google account get the same ID. RevenueCat receives that ID, the records of the purchases made in the app (which levels, when, the price and currency, the store and its country, and the store’s transaction identifiers or receipts), and technical details such as the app and system version, the device type, the language and the IP address of the connection. It does not receive your name, email, Apple ID or Google account, and El Recreo doesn’t send it any advertising identifier. RevenueCat handles this data under its <a href="https://www.revenuecat.com/privacy/">Privacy Policy</a>.</p>
+        <p><strong>Our link server.</strong> The codes and the list of devices are kept by a small server of ours, run on Cloudflare. It stores, per group: the group’s random ID, and for each device a random ID made by the app when it was installed, the device model (such as “iPhone 16” or “Pixel 9 Pro”), whether it’s iPhone/iPad/Mac or Android, whether it bought levels itself or joined with a code, and when it was added and last opened the app. A code is kept for 10 minutes or until it’s used. To stop people guessing codes, the server counts attempts per group and per IP address; those counters are deleted after two hours. Only devices that have levels, or that enter a code, talk to this server. Cloudflare may keep short-lived request logs, including IP addresses, to run and secure the service (see the <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a>).</p>
+        <p><strong>How long, and how to remove it.</strong> A device that isn’t opened for 60 days drops off its group’s list, and a group’s list is deleted two years after its last activity. You can take a device out of a group any time: on that device, Settings › Use on another device › Stop using these levels here; from the device that bought the levels, tap Remove next to another device. To have a group’s list and its RevenueCat record deleted, write to <a href="mailto:support@alexriakhin.com?subject=Delete%20my%20linked%20devices">support@alexriakhin.com</a> with a code from one of its devices (Settings › Use on another device › Show a code), so we can find the group; we delete it within 30 days. Deleting these records doesn’t affect what you bought: the App Store or Google Play still gives your levels to devices on the same account.</p>
 
         <h2>This website</h2>
         <p>This website is a set of static pages hosted on GitHub Pages. It uses no cookies, no analytics and no tracking scripts. The voice samples on the home page are audio files served from this same site, and they play only when you tap them. Like any web host, GitHub may log technical data such as IP addresses to keep the service secure (see the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>). The site’s fonts are loaded from Google Fonts, so your browser connects to Google’s servers to download them (see the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>). If you email us, we use your message and address only to reply.</p>
 
         <h2>Children</h2>
-        <p>El Recreo does not collect personal information from anyone, including children.</p>
+        <p>El Recreo doesn’t ask anyone for personal information, including children. The only data that leaves a device is described above: progress in your own iCloud account or Android backup, and, for devices that use levels from a purchase, the random IDs, device details and purchase records used to share levels between your devices.</p>
 
         <h2>Changes to this policy</h2>
         <p>If the app changes in a way that affects your privacy, we’ll update this page and the date at the top before the change takes effect.</p>

@@ -52,6 +52,12 @@
   color-scheme: light dark;
 }
 
+/* Russian: the two brand fonts have no Cyrillic, so Russian pages load Manrope for both. */
+:root:lang(ru) {
+  --font-head: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --primary: #6FD3D1;
@@ -160,9 +166,34 @@ i[lang], em { font-style: italic; }
 .bar-soon { text-decoration: none; }
 .page .bar-soon, .bar-nav + .bar-soon { margin-left: 0; }
 
+/* Language menu: a globe pill in the bar, the list drops below it. */
+.lang { position: relative; flex: none; margin-left: -0.75rem; }
+.lang summary {
+  list-style: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  color: var(--on-surface); font: 700 0.8rem/1 var(--font-head); letter-spacing: 0.02em;
+  padding: 0.55rem 0.7rem; border-radius: var(--r-pebble);
+}
+.lang summary::-webkit-details-marker { display: none; }
+.lang summary:hover, .lang[open] summary { background: var(--surface-container); }
+.lang summary svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.lang ul {
+  position: absolute; right: 0; top: calc(100% + 0.4rem); z-index: 60;
+  list-style: none; margin: 0; padding: 0.4rem; min-width: 12rem;
+  background: var(--surface-lowest); border-radius: var(--r-md); box-shadow: var(--shadow-card);
+}
+.lang a {
+  display: block; padding: 0.6rem 0.85rem; border-radius: var(--r-sm);
+  color: var(--on-surface); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+}
+.lang a:hover { background: var(--surface-container); }
+.lang a[aria-current] { color: var(--primary); font-weight: 600; }
+.lang a[aria-current]::after { content: " ✓"; }
+
 @media (max-width: 52rem) {
   .bar-nav { display: none; }
-  .bar-soon { margin-left: auto !important; }
+  .lang { margin-left: auto; }
+  .bar-soon { margin-left: 0 !important; }
 }
 
 /* ---------- Buttons ---------- */

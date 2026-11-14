@@ -28,7 +28,22 @@
   var year = String(new Date().getFullYear());
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = year; });
 
+  // ---------- Language menu: close on a click elsewhere or Escape ----------
+  var menus = document.querySelectorAll("details.lang");
+  document.addEventListener("click", function (event) {
+    menus.forEach(function (menu) { if (menu.open && !menu.contains(event.target)) menu.open = false; });
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape") return;
+    menus.forEach(function (menu) {
+      if (menu.open) { menu.open = false; menu.querySelector("summary").focus(); }
+    });
+  });
+
   // ---------- Voices: one line at a time, recorded in the app's voices (assets/audio) ----------
+  // Resolved from this script's own URL, so pages in /<lang>/ find the same files.
+  var script = document.currentScript;
+  var audioBase = script && script.src ? new URL("../audio/", script.src).href : "assets/audio/";
   var current = null; // { audio, button, done }
 
   function stop() {
@@ -46,7 +61,7 @@
   // Plays assets/audio/<name>.m4a. `done(finished)` runs once, when it ends or is interrupted.
   function play(name, button, done) {
     stop();
-    var audio = new Audio("assets/audio/" + name + ".m4a");
+    var audio = new Audio(audioBase + name + ".m4a");
     var entry = { audio: audio, button: button, done: done };
     current = entry;
     if (button) {
@@ -69,7 +84,7 @@
   }
 
   function sound(name) {
-    var effect = new Audio("assets/audio/" + name + ".m4a");
+    var effect = new Audio(audioBase + name + ".m4a");
     effect.volume = 0.6;
     var started = effect.play();
     if (started && started.catch) started.catch(function () {});
@@ -92,6 +107,7 @@
     var again = build.querySelector("[data-again]");
     var picks = build.querySelectorAll("[data-pick]");
     var intro = feedback.innerHTML;
+    var done = build.querySelector("template[data-done]");
 
     picks.forEach(function (pick) {
       pick.addEventListener("click", function () {
@@ -103,7 +119,7 @@
           picks.forEach(function (p) { p.disabled = true; });
           meter.style.width = "100%";
           feedback.className = "mock-note good";
-          feedback.innerHTML = "¡Muy bien! <span lang=\"es\">¿Vos de dónde sos?</span> Here’s Lucho asking you the same thing.";
+          feedback.innerHTML = done ? done.innerHTML : "¡Muy bien!";
           again.hidden = false;
           setTimeout(function () { play("lucho-donde"); }, 650);
         } else {
@@ -140,6 +156,11 @@
     var vote = scene.querySelector("[data-vote]");
     var replies = scene.querySelectorAll("[data-reply]");
     var run = 0;
+    var labels = {
+      play: scene.getAttribute("data-play") || label.textContent,
+      again: scene.getAttribute("data-again") || label.textContent,
+      stop: scene.getAttribute("data-stop") || "Stop"
+    };
 
     function reset() {
       scene.classList.remove("running");
@@ -151,14 +172,14 @@
       lines.forEach(function (line) { line.classList.remove("now"); });
       if (i >= lines.length) {
         reset();
-        label.textContent = "Play again";
+        label.textContent = labels.again;
         vote.hidden = false;
         return;
       }
       lines[i].classList.add("said", "now");
       play(lines[i].getAttribute("data-line"), null, function (finished) {
         if (!finished || id !== run) {
-          if (id === run) { reset(); label.textContent = "Play the scene"; }
+          if (id === run) { reset(); label.textContent = labels.play; }
           return;
         }
         setTimeout(function () { step(i + 1, id); }, 350);
@@ -170,14 +191,14 @@
         run++;
         stop();
         reset();
-        label.textContent = "Play the scene";
+        label.textContent = labels.play;
         return;
       }
       run++;
       vote.hidden = true;
       replies.forEach(function (reply) { reply.hidden = true; });
       scene.classList.add("running");
-      label.textContent = "Stop";
+      label.textContent = labels.stop;
       step(0, run);
     });
 

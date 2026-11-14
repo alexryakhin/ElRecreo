@@ -643,6 +643,7 @@ i[lang], em { font-style: italic; }
   background: var(--sun); color: var(--on-sun); padding: 0.35rem 0.55rem; border-radius: var(--r-pebble);
 }
 .level-ready { box-shadow: 0 0 0 2px var(--primary-container); }
+.ready-soon { background: var(--surface-container); color: var(--on-surface-variant); }
 
 @media (max-width: 72rem) {
   .cast { grid-template-columns: repeat(3, minmax(0, 1fr)); }
